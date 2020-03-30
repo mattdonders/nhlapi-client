@@ -2,7 +2,7 @@ import requests
 from .models import Teams
 
 
-class NHLAPI:
+class NHLAPI(Model):
     NHL_API_BASE_URL = "https://statsapi.web.nhl.com/api/v1"
 
     @classmethod

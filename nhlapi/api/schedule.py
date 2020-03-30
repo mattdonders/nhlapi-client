@@ -13,7 +13,7 @@ class API(APIEndpoint):
         endpoint = self.endpoint
         return super(API, self).get(endpoint=endpoint, **kwargs)
 
-    def get_fully_expanded(self, **kwargs):
+    def get_fully_expanded(self, **kwargs) -> Schedule:
         """ Gets the details for one or more campaigns by ID """
 
         endpoint = self.endpoint

@@ -1,7 +1,8 @@
 import logging
+import requests
 
 
-class APIEndpoint:
+class APIEndpoint(Model):
     def __init__(self, api, endpoint=None, cls=None):
         self.api = api
         self.endpoint = endpoint

@@ -7,7 +7,7 @@ class API(APIEndpoint):
     def __init__(self, api, endpoint="teams"):
         super(API, self).__init__(api, endpoint=endpoint, cls=Teams)
 
-    def get(self, team_id=None, **kwargs):
+    def get(self, team_id=None, **kwargs) -> Teams:
         """ Gets the details for one or more campaigns by ID """
 
         endpoint = self.endpoint

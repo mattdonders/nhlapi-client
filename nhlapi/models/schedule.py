@@ -1,11 +1,26 @@
+from typing import List
+
+from nhlapi.models.common import Model
 from nhlapi.models.teams import Team, Venue
 from nhlapi.models.game import Game, GameTeams
 
 
-class Schedule:
-    _valid_properties = {"totalItems": None, "totalEvents": None, "totalGames": None, "totalMatches": None, "dates": []}
+class Schedule(Model):
+    _valid_properties = {
+        "totalItems": None,
+        "totalEvents": None,
+        "totalGames": None,
+        "totalMatches": None,
+        "dates": [],
+    }
 
     def __init__(self, **kwargs):
+        self.totalItems = None
+        self.totalEvents = None
+        self.totalGames = None
+        self.totalMatches = None
+        self.dates: List[ScheduleDate] = []
+
         for key, default in Schedule._valid_properties.items():
             setattr(self, key, kwargs.get(key, default))
 
@@ -27,7 +42,7 @@ class Schedule:
         return schedule
 
 
-class ScheduleDate:
+class ScheduleDate(Model):
     _valid_properties = {
         "date": None,
         "totalItems": None,
@@ -38,6 +53,13 @@ class ScheduleDate:
     }
 
     def __init__(self, **kwargs):
+        self.date = None
+        self.totalItems = None
+        self.totalEvents = None
+        self.totalGames = None
+        self.totalMatches = None
+        self.games: List[Game] = None
+
         for key, default in ScheduleDate._valid_properties.items():
             setattr(self, key, kwargs.get(key, default))
 

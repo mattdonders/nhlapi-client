@@ -2,8 +2,10 @@ from enum import Enum
 
 from nhlapi.models.teams import Team, Venue
 
+from nhlapi.models.common import Model
 
-class Game:
+
+class Game(Model):
     _valid_properties = {
         "gamePk": None,
         "link": None,
@@ -17,6 +19,16 @@ class Game:
     }
 
     def __init__(self, **kwargs):
+        self.gamePk = None
+        self.link = None
+        self.gameType: GameType = None
+        self.season = None
+        self.gameData = None
+        self.status = None
+        self.teams: GameTeams = None
+        self.venue = None
+        self.content = None
+
         for key, default in Game._valid_properties.items():
             setattr(self, key, kwargs.get(key, default))
 
@@ -55,7 +67,7 @@ class GameType(Enum):
     WORLD_CUP_OF_HOCKEY_FINALS = "WCOH_FINAL"
 
 
-class GameStatus:
+class GameStatus(Model):
     _valid_properties = {
         "abstractGameState": None,
         "codedGameState": None,
@@ -65,6 +77,12 @@ class GameStatus:
     }
 
     def __init__(self, **kwargs):
+        self.abstractGameState = None
+        self.codedGameState = None
+        self.detailedState = None
+        self.statusCode = None
+        self.startTimeTBD = False
+
         for key, default in GameStatus._valid_properties.items():
             setattr(self, key, kwargs.get(key, default))
 
@@ -83,10 +101,13 @@ class GameStatus:
         return game_status
 
 
-class GameTeams:
+class GameTeams(Model):
     _valid_properties = {"away": None, "home": None}
 
     def __init__(self, **kwargs):
+        self.away: Team = None
+        self.home: Team = None
+
         for key, default in GameTeams._valid_properties.items():
             setattr(self, key, kwargs.get(key, default))
 

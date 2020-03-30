@@ -3,7 +3,7 @@ from datetime import datetime
 import json as _json
 
 
-class Model:
+class Model(Model):
     def __init__(self):
         self._valid_properties = {}
 

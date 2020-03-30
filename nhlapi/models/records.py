@@ -1,1 +1,2 @@
-class LeagueRecor
+class LeagueRecord(Model):
+    pass

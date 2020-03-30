@@ -2,13 +2,13 @@ import logging
 
 import requests
 
-from nhlapi.api import teams, schedule
+from nhlapi.api import teams, schedule, people
 
 NHL_API_BASE_URL = "https://statsapi.web.nhl.com/api/v1"
 REUSABLE_SESSION = requests.Session()
 
 
-class NHLAPIClient:
+class NHLAPIClient(Model):
     """ A standard HTTP REST client ussed by the NHL API class. """
 
     def __init__(self, host, **kwargs):
@@ -32,8 +32,9 @@ class NHLAPIClient:
         return response
 
 
-class NHLAPI:
+class NHLAPI(Model):
     def __init__(self, host=NHL_API_BASE_URL, client=NHLAPIClient, **kwargs):
         self.client = client(host=host, **kwargs)
         self.teams = teams.API(self.client)
         self.schedule = schedule.API(self.client)
+        self.people = people.API(self.client)
